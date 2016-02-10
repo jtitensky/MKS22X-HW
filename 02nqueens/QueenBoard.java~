@@ -1,8 +1,8 @@
-public class Board{
+public class QueenBoard{
 
     int[][] board;
 
-    public Board(int n){
+    public QueenBoard(int n){
 	board=new int[n][n];
 	for(int i=0;i<n;i++){
 	    for(int j=0;j<n;j++){
@@ -44,6 +44,48 @@ public class Board{
 	}
 	return true;
     }
+
+    public String toString(){
+	String s="";
+	for(int i=0;i<board.length;i++){
+	    for(int j=0;j<board.length;j++){
+		if(board[i][j]==1){
+		    s+=" Q";
+		}else{
+		    s+=" -";
+		}
+	    }
+	    s+="\n";
+	}
+	return s;
+    }
+
+    public boolean solvee(int n){
+	if(n==board.length){
+	    for(int i=0;i<n;i++){
+		if(board[n][i]==0){
+		    addQueen(n,i);
+		    return true;
+		}
+	    }
+	    return false;
+	}
+	for(int i=0;i<board.length;i++){
+	    if(board[n][i]==0){
+		addQueen(n,i);
+		if(solvee(n-1)){
+		    return true;
+		}
+		removeQueen(n,i);
+	    }
+	    return false;
+	}
+    }
+
+    public boolean solve(){
+	return solvee(0);
+    }
+
 
 }
 
