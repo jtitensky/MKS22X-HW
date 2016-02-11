@@ -18,7 +18,7 @@ public class QueenBoard{
 	board[i][j]=1;
 	for(int m=0;m<board.length;m++){
 	    for(int n=0;n<board.length;n++){
-		if(m==i || n==j || m-i==n-j){
+		if(m==i || n==j || m-i==n-j || m-i==j-n){
 		    if(!(m==i && n==j)){
 			board[m][n]-=1;
 		    }
@@ -35,7 +35,7 @@ public class QueenBoard{
 	board[i][j]=0;
 	for(int m=0;m<board.length;m++){
 	    for(int n=0;n<board.length;n++){
-		if(m==i || n==j || m-i==n-j){
+		if(m==i || n==j || m-i==n-j || m-i==j-n){
 		    if(!(m==i && n==j)){
 			board[m][n]+=1;
 		    }
@@ -61,8 +61,8 @@ public class QueenBoard{
     }
 
     public boolean solvee(int n){
-	if(n==board.length){
-	    for(int i=0;i<n;i++){
+	if(n==board.length-1){
+	    for(int i=0;i<board.length;i++){
 		if(board[n][i]==0){
 		    addQueen(n,i);
 		    return true;
@@ -73,7 +73,7 @@ public class QueenBoard{
 	for(int i=0;i<board.length;i++){
 	    if(board[n][i]==0){
 		addQueen(n,i);
-		if(solvee(n-1)){
+		if(solvee(n+1)){
 		    return true;
 		}
 		removeQueen(n,i);
