@@ -86,6 +86,9 @@ public class QueenBoard{
 	return solvee(0);
     }
 
+    public void printSolution(){
+	System.out.println(toString());
+    }
 
 }
 
