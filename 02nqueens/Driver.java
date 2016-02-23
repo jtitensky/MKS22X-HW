@@ -10,5 +10,8 @@ public class Driver{
 	    b.solve();
 	    b.printSolution();
 	}
+	    b = new QueenBoard(15);
+	    b.solve();
+	    b.printSolution();
     }
 }
