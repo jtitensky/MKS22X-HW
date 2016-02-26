@@ -49,7 +49,7 @@ public class Bronze{
 		    }
 		}
 	    }
-	    System.out.println(sum*72*72);
+	    System.out.println(""+sum*72*72+",6,Titensky,Jessica");
 	
 	}catch(FileNotFoundException e){
 	    System.out.println(e);
