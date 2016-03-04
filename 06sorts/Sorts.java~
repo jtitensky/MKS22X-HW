@@ -1,0 +1,155 @@
+import java.lang.Math;
+public class Sorts{
+
+    public static void insertionSort(int[]data){
+	for(int i=1;i<data.length;i++){
+	    if(data[i]<data[i-1]){
+		int a=1;
+		int b=i-1;
+		int c=0;
+		if(data[i]>data[0]){
+		    while(!(data[c]>=data[i] && data[c-1]<=data[i])){
+			if(data[c]<data[i]){
+			    a=c;
+			}
+			if(data[c]>data[i]){
+			    b=c;
+			}
+			c=(a+b)/2+(a+b)%2;
+		    }
+		}
+		int x=data[i];
+		for(int j=i-1;j>=c;j--){
+		    data[j+1]=data[j];
+		}
+		data[c]=x;
+	    }
+	    //printArray(data);
+	}
+    }
+
+    public static void printArray(int[]data){
+	String s="[";
+	for(int i=0;i<data.length;i++){
+	    s+=data[i]+", ";
+	}
+	s=s.substring(0,s.length()-2)+"]";
+	System.out.println(s);
+    }
+
+    public static void selectionSort(int[] data){
+	for(int i=0;i<data.length;i++){
+	    int x=data[i];
+	    int y=i;
+	    for(int j=i;j<data.length;j++){
+		if(data[j]<x){
+		    x=data[j];
+		    y=j;
+		}
+	    }
+	    data[y]=data[i];
+	    data[i]=x;
+	    //printArray(data);
+	}
+    }
+
+    public static void bubbleSort(int[] data){
+	boolean o=false;
+	for(int i=data.length;i>0;i--){
+	    if(!o){
+		o=true;
+		for(int j=0;j<i-1;j++){
+		    if (data[j]>data[j+1]){
+			int x=data[j];
+			data[j]=data[j+1];
+			data[j+1]=x;
+			o=false;
+		    }
+		}
+	    }else{
+	    }
+	    //printArray(data);
+	}
+    }
+
+    public static void fillRandom(int[] data){
+	for(int i=0;i<data.length;i++){
+	    data[i]=(int)(Math.random()*20);//Integer.MAX_VALUE);
+	}
+    }
+
+    public static void swap(int[] data,int i,int j){
+	int x=data[i];
+	data[i]=data[j];
+	data[j]=x;
+    }
+
+
+    public static void merge(int[] data, int startA, int endA, int startB, int endB){
+	int[] nums=new int[data.length];
+	int i=startA;
+	int s=startA;
+	int e=endB;
+	while(startA<=endA && startB<=endB){
+	    if(data[startA]<data[startB]){
+		nums[i]=data[startA];
+		startA++;
+	    }else{
+		nums[i]=data[startB];
+		startB++;
+	    }
+	    i++;
+	}
+	for(int j=startA;j<=endA;j++){
+	    nums[i]=data[j];
+	    i++;
+	}
+	for(int j=startB;j<=endB;j++){
+	    nums[i]=data[j];
+	    i++;
+	}
+	for(int j=s;j<=e;j++){
+	    data[j]=nums[j];
+	}
+    }
+
+    public static void mergeSort(int[] data){
+	int x=0;
+	for(int i=2;i<data.length-1;i*=2){
+	    System.out.println(i);
+	    for(int j=0;j<data.length+1-i;j+=i){
+		merge(data,j,j+i/2-1,j+i/2,j+i-1);
+		printArray(data);
+	    }
+	    x=i;
+	}
+	merge(data,0,x-1,x,data.length-1);
+    }
+
+
+
+    public static void main(String[]args){
+	int[] nums=new int[8];
+	fillRandom(nums);
+	printArray(nums);
+	mergeSort(nums);
+	printArray(nums);
+	nums=new int[18];
+	fillRandom(nums);
+	printArray(nums);
+	mergeSort(nums);
+	printArray(nums);
+	nums=new int[5];
+	fillRandom(nums);
+	printArray(nums);
+	mergeSort(nums);
+	printArray(nums);
+	
+
+    
+    }
+
+
+
+
+}
