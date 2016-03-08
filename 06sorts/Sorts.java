@@ -113,7 +113,7 @@ public class Sorts{
 	}
     }
 
-    public static void mergeSort(int[] data){
+    public static void mergesort(int[] data){
 	int x=0;
 	for(int i=2;i<data.length;i*=2){
 	    System.out.println(i);
@@ -126,7 +126,12 @@ public class Sorts{
 	merge(data,0,x-1,x,data.length-1);
     }
 
+    public static String name(){
+	return "6,Titensky,Jessica";
+    }
 
+
+    /*
 
     public static void main(String[]args){
 	int[] nums=new int[8];
@@ -144,12 +149,9 @@ public class Sorts{
 	printArray(nums);
 	mergeSort(nums);
 	printArray(nums);
-	
-
-    
     }
 
-
+    */
 
 
 }
