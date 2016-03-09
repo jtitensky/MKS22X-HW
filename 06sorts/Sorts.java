@@ -1,4 +1,4 @@
-import java.lang.Math;
+ import java.lang.Math;
 public class Sorts{
 
     public static void insertionSort(int[]data){
@@ -116,10 +116,8 @@ public class Sorts{
     public static void mergesort(int[] data){
 	int x=0;
 	for(int i=2;i<data.length;i*=2){
-	    System.out.println(i);
 	    for(int j=0;j<data.length+1-i;j+=i){
 		merge(data,j,j+i/2-1,j+i/2,j+i-1);
-		printArray(data);
 	    }
 	    x=i;
 	}
@@ -137,17 +135,22 @@ public class Sorts{
 	int[] nums=new int[8];
 	fillRandom(nums);
 	printArray(nums);
-	mergeSort(nums);
+	mergesort(nums);
 	printArray(nums);
 	nums=new int[18];
 	fillRandom(nums);
 	printArray(nums);
-	mergeSort(nums);
+	mergesort(nums);
 	printArray(nums);
 	nums=new int[5];
 	fillRandom(nums);
 	printArray(nums);
-	mergeSort(nums);
+	mergesort(nums);
+	printArray(nums);
+	nums=new int[17];
+	fillRandom(nums);
+	printArray(nums);
+	mergesort(nums);
 	printArray(nums);
     }
 
