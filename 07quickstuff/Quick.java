@@ -2,7 +2,7 @@ import java.lang.Math;
 public class Quick{
 
     private static int partition(int[] data, int left, int right){
-	int rp=left+(int)(Math.random()*(right-left));
+	int rp=left+(int)(Math.random()*(right-left+1));
 	int re=data[rp];
 	int or=right;
 	data[rp]=data[right];
@@ -45,6 +45,21 @@ public class Quick{
 	return quickselect(data,k,0,data.length-1);
     }
 
+    public static void quicksort(int[] data, int left, int right){
+	if(right-left>0){
+	    int p=partition(data,left,right);
+	    quicksort(data,left,p);
+	    quicksort(data,p+1,right);
+	}
+    }
+
+    public static void quicksort(int[] data){
+	quicksort(data,0,data.length-1);
+    }
+
+    public static String name(){
+	return "6,Titensky,Jessica";
+    }
 
     public static void print(int[] data){
 	String s="";
@@ -53,16 +68,20 @@ public class Quick{
 	}
 	System.out.println(s);
     }
-    /*
 
+
+    /*    
     public static void main(String[]args){
 	int[] ar= new int[] {15,16,14,17,13,18,12,19,10,11};
-	System.out.println("A0"+quickselect(ar,0));
-	System.out.println("A4"+quickselect(ar,4));
-	System.out.println("A5"+quickselect(ar,5));
-	System.out.println("AL"+quickselect(ar,ar.length-1));
+	//System.out.println("A0"+quickselect(ar,0));
+	//System.out.println("A4"+quickselect(ar,4));
+	//System.out.println("A5"+quickselect(ar,5));
+	//System.out.println("AL"+quickselect(ar,ar.length-1));
+	print(ar);
+	quicksort(ar);
+	print(ar);
     }
-
-    */
+    */    
+   
 
 }
