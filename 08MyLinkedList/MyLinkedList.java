@@ -23,22 +23,21 @@ public class MyLinkedList{
 
     LNode start;
     int size;
+    LNode end;
 
     public MyLinkedList(){
 	start=null;
+	end=null;
 	size=0;
     }
 
     public boolean add(int value){
 	if(start==null){
-	    start=new LNode(value,null);
+	    start=end=new LNode(value,null);
 	}else{
-	    LNode last=start;
-	    for(int i=0;i<size-1;i++){
-		last=last.getNext();
-	    }
 	    LNode x=new LNode(value,null);
-	    last.setNext(x);
+	    end.setNext(x);
+	    end=x;
 	}
 	size++;
 	return true;
