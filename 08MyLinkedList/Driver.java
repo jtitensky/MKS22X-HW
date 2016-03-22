@@ -1,6 +1,18 @@
 import java.util.*;
 public class Driver{
     public static void main(String[]args){
+
+	MyLinkedList<String> m=new MyLinkedList<String>();
+	m.add("word");
+	m.add("blah");
+	//System.out.println(m.toString());
+	MyLinkedList<MyLinkedList<String>> n=new MyLinkedList<MyLinkedList<String>>();
+	n.add(m);
+	System.out.println(n.toString());
+
+
+
+	/*
 	MyLinkedList m=new MyLinkedList();
 	ArrayList<Integer> n=new ArrayList<Integer>();
 	long start,end;
@@ -37,6 +49,8 @@ public class Driver{
 
 	end=System.currentTimeMillis();
 	System.out.println("Time: "+(end-start)/1000.0+" seconds for MyLinkedList");
+	*/
+
 
     }
 }

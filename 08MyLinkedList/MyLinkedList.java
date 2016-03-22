@@ -1,29 +1,29 @@
-public class MyLinkedList{
+public class MyLinkedList<T>{
 
-    private class LNode{
-	int data;
-	LNode next;
-	public LNode(int d, LNode n){
+    private class LNode<T>{
+	T data;
+	LNode<T> next;
+	public LNode(T d, LNode<T> n){
 	    data=d;
 	    next=n;
 	}
-	public int getData(){
+	public T getData(){
 	    return data;
 	}
-	public LNode getNext(){
+	public LNode<T> getNext(){
 	    return next;
 	}
-	public void setData(int d){
+	public void setData(T d){
 	    data=d;
 	}
-	public void setNext(LNode n){
+	public void setNext(LNode<T> n){
 	    next=n;
 	}
     }
-
-    LNode start;
+   
+    LNode<T> start;
     int size;
-    LNode end;
+    LNode<T> end;
 
     public MyLinkedList(){
 	start=null;
@@ -31,11 +31,11 @@ public class MyLinkedList{
 	size=0;
     }
 
-    public boolean add(int value){
+    public boolean add(T value){
 	if(start==null){
-	    start=end=new LNode(value,null);
+	    start=end=new LNode<T>(value,null);
 	}else{
-	    LNode x=new LNode(value,null);
+	    LNode<T> x=new LNode<T>(value,null);
 	    end.setNext(x);
 	    end=x;
 	}
@@ -45,7 +45,7 @@ public class MyLinkedList{
 
     public String toString(){
 	String s="[ ";
-	LNode x=start;
+	LNode<T> x=start;
 	if(start==null){
 	    return "[]";
 	}
@@ -58,20 +58,20 @@ public class MyLinkedList{
 	return s;
     }
 
-    public int get(int index){
-	LNode x=start;
+    public T get(int index){
+	LNode<T> x=start;
 	for(int i=0;i<index;i++){
 	    x=x.getNext();
 	}
 	return x.getData();
     }
 
-    public int set(int index, int newValue){
-	LNode x=start;
+    public T set(int index, T newValue){
+	LNode<T> x=start;
 	for(int i=0;i<index;i++){
 	    x=x.getNext();
 	}
-	int old=x.getData();
+	T old=x.getData();
 	x.setData(newValue);
 	return old;
     }
@@ -80,12 +80,12 @@ public class MyLinkedList{
 	return size;
     }
 
-    public int remove(int index){
-	int old=get(index);
+    public T remove(int index){
+	T old=get(index);
 	if(index==0){
 	    start=start.getNext();
 	}else{       
-	    LNode x=start;
+	    LNode<T> x=start;
 	    for(int i=0;i<index-1;i++){
 		x=x.getNext();
 	    }
@@ -94,23 +94,24 @@ public class MyLinkedList{
 	return old;
     }
 
-    public boolean add(int index, int value){
+    public boolean add(int index, T value){
 	if(index==0){
-	    LNode y=new LNode(value,start);
+	    LNode<T> y=new LNode<T>(value,start);
 	    start=y;
 	    size++;
 	    return true;
 	}
-	LNode x=start;
+	LNode<T> x=start;
 	for(int i=0;i<index-1;i++){
 	    x=x.getNext();
 	}
-	LNode y=new LNode(value,x.getNext());
+	LNode<T> y=new LNode<T>(value,x.getNext());
 	x.setNext(y);
 	size++;
 	return true;
     }
 
+    /*
     public int indexOf(int value){
 	if(size==0){
 	    return -1;
@@ -129,7 +130,7 @@ public class MyLinkedList{
 	}
 	return -1;
     }
-
+    */
 
 
 }
