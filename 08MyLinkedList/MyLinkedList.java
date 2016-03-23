@@ -59,6 +59,9 @@ public class MyLinkedList<T>{
     }
 
     public T get(int index){
+	if(index>size-1 ||index<0){
+	    throw new IndexOutOfBoundsException();
+	}
 	LNode<T> x=start;
 	for(int i=0;i<index;i++){
 	    x=x.getNext();
@@ -67,6 +70,9 @@ public class MyLinkedList<T>{
     }
 
     public T set(int index, T newValue){
+	if(index>size-1 ||index<0){
+	    throw new IndexOutOfBoundsException();
+	}
 	LNode<T> x=start;
 	for(int i=0;i<index;i++){
 	    x=x.getNext();
@@ -81,6 +87,9 @@ public class MyLinkedList<T>{
     }
 
     public T remove(int index){
+	if(index>size-1 ||index<0){
+	    throw new IndexOutOfBoundsException();
+	}
 	T old=get(index);
 	if(index==0){
 	    start=start.getNext();
@@ -90,11 +99,18 @@ public class MyLinkedList<T>{
 		x=x.getNext();
 	    }
 	    x.setNext(x.getNext().getNext());
+	    if(index==size-1){
+		end=x;
+	    }
 	}
+	size--;
 	return old;
     }
 
     public boolean add(int index, T value){
+	if(index>size ||index<0){
+	    throw new IndexOutOfBoundsException();
+	}
 	if(index==0){
 	    LNode<T> y=new LNode<T>(value,start);
 	    start=y;
@@ -107,8 +123,24 @@ public class MyLinkedList<T>{
 	}
 	LNode<T> y=new LNode<T>(value,x.getNext());
 	x.setNext(y);
+	if(index==size){
+	    end=y;
+	}
 	size++;
 	return true;
+    }
+
+    public String toString(boolean b){
+	if(b){
+	    String s="";
+	    s+=toString();
+	    s+=" head:";
+	    s+=start.getData();
+	    s+=" tail:";
+	    s+=end.getData();
+	    return s;
+	}
+	return "false?";
     }
 
     /*
