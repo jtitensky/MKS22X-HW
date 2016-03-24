@@ -1,4 +1,5 @@
-public class MyLinkedList<T>{
+import java.util.*;
+public class MyLinkedList<T> implements Iterable<T>{
 
     private class LNode<T>{
 	T data;
@@ -20,7 +21,29 @@ public class MyLinkedList<T>{
 	    next=n;
 	}
     }
-   
+
+    private class Boop implements Iterator<T>{
+	LNode<T> current;
+	public boolean hasNext(){
+	    return current.getNext()!=null;
+	}
+	public T next(){
+	    if(hasNext()){
+		current=current.getNext();
+		return current.getData();
+	    }else{
+		throw new NoSuchElementException();
+	    }
+	}
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+    }
+
+    public Iterator<T> iterator(){
+	return new Boop();
+    }
+
     LNode<T> start;
     int size;
     LNode<T> end;
@@ -144,24 +167,24 @@ public class MyLinkedList<T>{
     }
 
     /*
-    public int indexOf(int value){
-	if(size==0){
-	    return -1;
-	}
-	LNode x=start;
-	int i=0;
-	while(x.getNext()!=null){
-	    if(x.getData()==value){
-		return i;
-	    }
-	    x=x.getNext();
-	    i++;
-	}
-	if(x.getData()==value){
-	    return size-1;
-	}
-	return -1;
-    }
+      public int indexOf(int value){
+      if(size==0){
+      return -1;
+      }
+      LNode x=start;
+      int i=0;
+      while(x.getNext()!=null){
+      if(x.getData()==value){
+      return i;
+      }
+      x=x.getNext();
+      i++;
+      }
+      if(x.getData()==value){
+      return size-1;
+      }
+      return -1;
+      }
     */
 
 
