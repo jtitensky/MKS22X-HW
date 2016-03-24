@@ -23,14 +23,18 @@ public class MyLinkedList<T> implements Iterable<T>{
     }
 
     private class Boop implements Iterator<T>{
-	LNode<T> current;
+	LNode<T> next;
+	public Boop(){
+	    next=start;
+	}
 	public boolean hasNext(){
-	    return current.getNext()!=null;
+	    return next!=null;
 	}
 	public T next(){
 	    if(hasNext()){
-		current=current.getNext();
-		return current.getData();
+		T x=next.getData();
+		next=next.getNext();
+		return x;
 	    }else{
 		throw new NoSuchElementException();
 	    }
