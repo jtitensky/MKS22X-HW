@@ -3,6 +3,20 @@ public class Driver{
 
     public static void main(String[]args){
 
+
+	/*
+
+	MyLinkedList<Integer> m=new MyLinkedList<Integer>();
+	for(int i=0;i<20;i++){
+	    m.add(i);
+	}
+	for(int i:m){
+	    System.out.println(i);
+	}
+
+
+
+	/*
 	MyLinkedList<String> m = new MyLinkedList<String>();
 
 	ArrayList<String>    n = new ArrayList<String>();
