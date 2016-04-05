@@ -129,7 +129,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	T old=get(index);
 	if(index==0){
 	    start=start.getNext();
-	    if(size>1){ start.setPrev(null);}
+	    start.setPrev(null);
 	}else{       
 	    LNode<T> x=start;
 	    for(int i=0;i<index-1;i++){
