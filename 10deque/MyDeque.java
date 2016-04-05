@@ -1,16 +1,22 @@
 import java.util.*;
-public class MyDeque{
+public class MyDeque<T>{
 
-    Object[] data;
+    T[] data;
     int start;
     int end;
     private int size;
 
+    @SuppressWarnings("unchecked")
+    public MyDeque(){
+	data=(T[]) new Object[10];
+    } 
+
+    @SuppressWarnings("unchecked")
     private void grow(){
-	Object[] x=new Object[data.length*2];
+	T[] x=(T[]) new Object[data.length*2];
 	int n=start;	
 	for(int i=0;i<data.length;i++){
-	    x[i]=n;
+	    x[i]=data[n];
 	    n++;
 	    if(n>=data.length){
 		n=0;
@@ -18,9 +24,10 @@ public class MyDeque{
 	}
 	start=0;
 	end=data.length-1;
+	data=x;
     }
 
-    public void addFirst(Object value){
+    public void addFirst(T value){
 	if(size==data.length){
 	    grow();
 	}
@@ -33,7 +40,7 @@ public class MyDeque{
 	size++;
     }
 
-    public void addLast(Object value){
+    public void addLast(T value){
 	if(size==data.length){
 	    grow();
 	}
@@ -46,11 +53,11 @@ public class MyDeque{
 	size++;
     }
 
-    public Object removeFirst(){
+    public T removeFirst(){
 	if(size==0){
 	    throw new NoSuchElementException();
 	}
-	Object x=data[start];
+	T x=data[start];
 	if(start==data.length-1){
 	    start=0;
 	}else{
@@ -60,11 +67,11 @@ public class MyDeque{
 	return x;
     }
 
-    public Object removeLast(){
+    public T removeLast(){
 	if(size==0){
 	    throw new NoSuchElementException();
 	}
-	Object x=data[end];
+	T x=data[end];
 	if(end==0){
 	    end=data.length-1;
 	}else{
@@ -74,14 +81,14 @@ public class MyDeque{
 	return x;
     }
 
-    public Object getFirst(){
+    public T getFirst(){
 	if(size==0){
 	    throw new NoSuchElementException();
 	}
 	return data[start];
     }
 
-    public Object getLast(){
+    public T getLast(){
 	if(size==0){
 	    throw new NoSuchElementException();
 	}
