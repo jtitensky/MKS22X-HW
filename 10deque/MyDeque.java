@@ -7,18 +7,18 @@ public class MyDeque<T>{
     private int size;
 
     @SuppressWarnings("unchecked")
-    public MyDeque(){
+	public MyDeque(){
 	data=(T[]) new Object[10];
     } 
 
     @SuppressWarnings("unchecked")
-    private void grow(){
+	private void grow(){
 	T[] x=(T[]) new Object[data.length*2];
 	int n=start;	
 	for(int i=0;i<data.length;i++){
 	    x[i]=data[n];
 	    n++;
-	    if(n>=data.length){
+	    if(n==data.length){
 		n=0;
 	    }
 	}
@@ -44,10 +44,12 @@ public class MyDeque<T>{
 	if(size==data.length){
 	    grow();
 	}
-	if(end==data.length-1){
-	    end=0;
-	}else{
-	    end++;
+	if(size>0){
+	    if(end==data.length-1){
+		end=0;
+	    }else{
+		end++;
+	    }
 	}
 	data[end]=value;
 	size++;
@@ -93,6 +95,25 @@ public class MyDeque<T>{
 	    throw new NoSuchElementException();
 	}
 	return data[end];
+    }
+
+    public String toString(){
+	String s="";
+	for(int i=start;i<=end;i++){
+	    if(i==data.length){
+		i=0;
+	    }
+	    s+=data[i]+" ";
+	}
+	return s;
+    }
+
+    public int size(){
+	return size;
+    }
+
+    public boolean isEmpty(){
+	return size==0;
     }
 
 }
