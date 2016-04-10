@@ -1,0 +1,22 @@
+public class FrontierStack<T> implements Frontier<T>{
+
+    MyStack<T> m;
+
+    public FrontierStack(){
+	m=new MyStack<T>();
+    }
+
+    public void add(T element){
+	m.push(element);
+    }
+
+    public T next(){
+	return m.pop();
+    }
+
+    public boolean hasNext(){
+	return !m.isEmpty();
+    }
+
+
+}
