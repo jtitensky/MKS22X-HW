@@ -1,0 +1,19 @@
+public class Nodee{
+
+    Coordinate c;
+    Node prev;
+
+    public Node(Coordinate x,Node last){
+	c=x;
+	prev=last;
+    }
+
+    public Node getPrev(){
+	return prev;
+    }
+
+    public Coordinate getCoord(){
+	return c;
+    }
+
+}

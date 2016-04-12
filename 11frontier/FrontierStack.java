@@ -1,9 +1,10 @@
+import java.util.*;
 public class FrontierStack<T> implements Frontier<T>{
 
-    MyStack<T> m;
+    Stack<T> m;
 
     public FrontierStack(){
-	m=new MyStack<T>();
+	m=new Stack<T>();
     }
 
     public void add(T element){

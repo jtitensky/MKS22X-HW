@@ -1,0 +1,25 @@
+public class Driver{
+    public static void main(String[]args){
+
+	BetterMaze b=new BetterMaze("data1.dat");
+	System.out.println(b.toString());
+	System.out.println(b.solveDFS());
+	System.out.println(b.toString());
+	int[] x=b.solutionCoordinates();
+	for(int i=0;i<x.length;i+=2){
+	    System.out.println(""+x[i]+" "+x[i+1]);
+	}
+
+	BetterMaze c=new BetterMaze("data1.dat");
+	System.out.println(c.toString());
+	System.out.println(c.solveBFS());
+	System.out.println(c.toString());
+	int[] x=c.solutionCoordinates();
+	for(int i=0;i<x.length;i+=2){
+	    System.out.println(""+x[i]+" "+x[i+1]);
+	}
+
+
+
+    }
+}
