@@ -73,6 +73,11 @@ public class BetterMaze{
 	n=new Node(startRow,startCol,null);
 	placesToGo.add(n);
 	while(placesToGo.hasNext()){
+	    if(animate){
+		clearTerminal();
+		System.out.println(toString());
+		wait(20);
+	    }
 	    n=placesToGo.next();
 	    if(maze[n.x+1][n.y]==' ' || maze[n.x+1][n.y]=='E'){
 		m=new Node(n.x+1,n.y,n);
@@ -105,8 +110,11 @@ public class BetterMaze{
 		}
 		return true;
 	    }
-	    maze[n.x][n.y]='.';
+	    if(maze[n.x][n.y]!='S'){
+		maze[n.x][n.y]='.';
+	    }
 	}
+	solution=new int[1];
 	return false;
     }
 
