@@ -22,6 +22,23 @@ public class BSTree<T extends Comparable<T>>{
 	}
     }
 
+    public int height(){
+	if(root==null){
+	    return 0;
+	}else{
+	    return root.height();
+	}
+    }
+
+    public boolean contains(T value){
+	if(root==null){
+	    return false;
+	}else{
+	    return root.contains(value);
+	}
+    }
+
+
     private class Node{
 
 	Node left,right;
@@ -59,14 +76,14 @@ public class BSTree<T extends Comparable<T>>{
 		s+=left.toString();
 	    }else{
 		if(right!=null){
-		    s+="_";
+		    s+="_ ";
 		}
 	    }
 	    if(right!=null){
 		s+=right.toString();
 	    }else{
 		if(left!=null){
-		    s+="_";
+		    s+="_ ";
 		}
 	    }
 	    return s;
@@ -78,26 +95,55 @@ public class BSTree<T extends Comparable<T>>{
 	    if(left==null && data.compareTo(value)>=0){
 		left=x;
 		b=true;
-		System.out.println("1");
 	    }
 	    if(right==null && data.compareTo(value)<=0){
 		right=x;
 		b=true;
-		System.out.println("2");
 	    }
 	    if(data.compareTo(value)>=0 && !b){
 		left.add(value);
 		b=true;
-		System.out.println("3");
 	    }
 	    if(data.compareTo(value)<0 && !b){
 		right.add(value);
 		b=true;
-		System.out.println("4");
+	    }
+	}
+
+	public int height(){
+	    if(left==null){
+		if(right==null){
+		    return 1;
+		}else{
+		    return 1+right.height();
+		}
+	    }else{
+		if(right==null){
+		    return 1+left.height();
+		}else{
+		    int l=left.height();
+		    int r=right.height();
+		    if(l>r){
+			return 1+l;
+		    }else{
+			return 1+r;
+		    }
+		}
 	    }
 	}
 	     
-		
+	public boolean contains(T value){
+	    boolean x=(value.compareTo(data)==0);
+	    boolean y=false;
+	    boolean z=false;
+	    if(left!=null){
+		y=left.contains(value);
+	    }
+	    if(right!=null){
+		z=right.contains(value);
+	    }
+	    return x||y||z;
+	}
 
 
 

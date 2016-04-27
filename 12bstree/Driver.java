@@ -13,8 +13,10 @@ public class Driver{
 	System.out.println(t.toString());
 	t.add(2);
 	System.out.println(t.toString());
-
-
+	System.out.println(t.height());
+	for(int i=0;i<8;i++){
+	    System.out.println(""+i+" "+t.contains(i));
+	}
 
 
 
