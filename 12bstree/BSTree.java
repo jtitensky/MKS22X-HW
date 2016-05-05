@@ -22,7 +22,7 @@ public class BSTree<T extends Comparable<T>>{
 	}
     }
 
-    public int height(){
+    public int getHeight(){
 	if(root==null){
 	    return 0;
 	}else{
@@ -38,6 +38,22 @@ public class BSTree<T extends Comparable<T>>{
 	}
     }
 
+    public T remove(T value){
+	if(root==null || !contains(value)){
+	    return null;
+	}
+	T x=root.remove(value);
+	root.f();
+	return x;
+    }
+
+    private void replace(Node a, Node b){
+	a.setData(b.getData());
+	a.setLeft(b.getLeft());
+	a.setRight(b.getRight());
+    }
+
+
 
     private class Node{
 
@@ -48,6 +64,23 @@ public class BSTree<T extends Comparable<T>>{
 	    data=d;
 	    left=l;
 	    right=r;
+	}
+
+	public void f(){
+	    if(left!=null){
+		if(left.data==null){
+		    left=null;
+		}else{
+		    left.f();
+		}
+	    }
+	    if(right!=null){
+		if(right.data==null){
+		    right=null;
+		}else{
+		    right.f();
+		}
+	    }
 	}
 
 	public T getData(){
@@ -75,16 +108,16 @@ public class BSTree<T extends Comparable<T>>{
 	    if(left!=null){
 		s+=left.toString();
 	    }else{
-		if(right!=null){
-		    s+="_ ";
-		}
+       		//if(right!=null){
+		s+="_ ";
+		//}
 	    }
 	    if(right!=null){
 		s+=right.toString();
 	    }else{
-		if(left!=null){
-		    s+="_ ";
-		}
+		//if(left!=null){
+		s+="_ ";
+		//}
 	    }
 	    return s;
 	}
@@ -143,6 +176,51 @@ public class BSTree<T extends Comparable<T>>{
 		z=right.contains(value);
 	    }
 	    return x||y||z;
+	}
+
+	public T min(Node x){
+	    if(x.left==null){
+		return x.data;
+	    }else{
+		return min(x.left);
+	    }
+	}
+
+	public T remove(T value){
+	    if(data.compareTo(value)<0){
+		return right.remove(value);
+	    }else if(data.compareTo(value)>0){
+		return left.remove(value);
+	    }else{
+		if(left==null){
+		    if(right==null){
+			data=null;
+			return data;
+		    }else{
+			//left=right.left;
+			//right=right.right;
+			//data=right.data;
+			//return data;
+			T x=right.data;
+			replace(this,right);
+			return data;
+		    }
+		}else{
+		    if(right==null){
+			//left=left.left;
+			//right=left.right;
+			//data=left.data;
+			//return data;
+			T x=left.data;
+			replace(this,left);
+			return data;
+		    }else{
+			data=min(right);
+			right.remove(data);
+			return data;
+		    }
+		}
+	    }
 	}
 
 
